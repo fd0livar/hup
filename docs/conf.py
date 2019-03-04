@@ -1,14 +1,13 @@
-# -*- coding: utf-8 -*-
-# Copyright (c) 2019 Frootlab Developers
+# Copyright (C) 2019 Frootlab Developers
 #
-# This file is part of the frootlab shared library, https://github.com/frootlab
+# This file is part of the Frootlab Shared Library, https://github.com/frootlab
 #
-#  The frootlab shared library is free software: you can redistribute it and/or
-#  modify it under the terms of the GNU General Public License as published by
-#  the Free Software Foundation, either version 3 of the License, or (at your
-#  option) any later version.
+#  The Frootlab Shared Library (flib) is free software: you can redistribute it
+#  and/or modify it under the terms of the GNU General Public License as
+#  published by the Free Software Foundation, either version 3 of the License,
+#  or (at your option) any later version.
 #
-#  The frootlab shared library is distributed in the hope that it will be
+#  The Frootlab Shared Library (flib) is distributed in the hope that it will be
 #  useful, but WITHOUT ANY WARRANTY; without even the implied warranty of
 #  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General
 #  Public License for more details. You should have received a copy of the GNU
@@ -16,7 +15,6 @@
 #  <http://www.gnu.org/licenses/>.
 #
 
-#
 # Configuration file for the Sphinx documentation builder.
 #
 # This file does only contain a selection of the most common options. For a
@@ -44,7 +42,7 @@ sys.path.insert(0, os.path.abspath('..'))
 
 # -- Project information -----------------------------------------------------
 
-import flib.base as package
+import flib as package
 
 project = package.__name__
 copyright = package.__copyright__
@@ -63,7 +61,7 @@ def run_apidoc(_) -> None:
     sys.path.append(os.path.join(os.path.dirname(__file__), '..', 'flib'))
     cur_dir = os.path.abspath(os.path.dirname(__file__))
     out_dir = os.path.join(cur_dir, 'api')
-    pkg_dir = os.path.join(cur_dir, '..', 'flib', 'base')
+    pkg_dir = os.path.join(cur_dir, '..', 'flib')
     main(['', '-o', out_dir, pkg_dir, '--separate'])
 
 def setup(app) -> None:
@@ -159,7 +157,7 @@ html_static_path = ['_static']
 # -- Options for HTMLHelp output ---------------------------------------------
 
 # Output file base name for HTML help builder.
-htmlhelp_basename = 'nemoadoc'
+htmlhelp_basename = 'flibdoc'
 
 
 # -- Options for LaTeX output ------------------------------------------------
@@ -186,7 +184,7 @@ latex_elements = { # type: ignore
 # (source start file, target name, title,
 #  author, documentclass [howto, manual, or own class]).
 latex_documents = [
-    (master_doc, 'flib-base.tex', 'flib Base Documentation',
+    (master_doc, 'flib.tex', 'Frootlab Shared Library Documentation',
      'Patrick Michl', 'manual'),
 ]
 
@@ -196,7 +194,7 @@ latex_documents = [
 # One entry per manual page. List of tuples
 # (source start file, name, description, authors, manual section).
 man_pages = [
-    (master_doc, 'flib-base', 'flib Base Documentation',
+    (master_doc, 'flib-', 'Frootlab Shared Library Documentation',
      [author], 1)
 ]
 
@@ -207,8 +205,8 @@ man_pages = [
 # (source start file, target name, title, author,
 #  dir menu entry, description, category)
 texinfo_documents = [
-    (master_doc, 'flib-base', 'flib Base Documentation',
-     author, 'flib-base', 'One line description of project.',
+    (master_doc, 'flib', 'Frootlab Shared Library Documentation',
+     author, 'flib', 'Frootlab Shared Library',
      'Miscellaneous'),
 ]
 
