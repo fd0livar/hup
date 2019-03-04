@@ -1,0 +1,5 @@
+Glossary
+========
+
+API Glossary
+------------
