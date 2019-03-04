@@ -1,8 +1,8 @@
 License
 =======
 
-This package is part of the frootlab shared library, which is distributed with
-the GNU General Public License v3 [GPLV3]_::
+The Frootlab Shared Library is distributed with the GNU General Public License
+v3 [GPLV3]_::
 
     GNU General Public License
     Version 3, 29 June 2007

@@ -1,7 +1,7 @@
 Installation
 ============
 
-The *frootlab shared library* (flib) requires Python 3.7 or later. If you do not
+The *Frootlab Shared Library* (flib) requires Python 3.7 or later. If you do not
 already have a Python environment configured on your computer, please see the
 instructions for installing the full `scientific Python stack`_.
 
@@ -20,22 +20,22 @@ follow instructions on `venv`_ and `virtual environments`_.
 Install the latest distributed package
 --------------------------------------
 
-You can install the latest distributed package of flib-base by using ``pip``::
+You can install the latest distributed package of flib by using ``pip``::
 
-    $ pip install flib-base
+    $ pip install flib
 
 Install the development branch
 ------------------------------
 
 The installation requires that you have `Git`_ installed
 on your system. Under this prerequisite the first step is to clone the github
-repository of flib-base::
+repository of flib::
 
-    $ git clone https://github.com/frootlab/base.git
+    $ git clone https://github.com/frootlab/flib.git
 
 Thereupon the development branch can locally be installed by using `pip`::
 
-    $ cd base
+    $ cd flib
     $ pip install -e .
 
 The ``pip install`` command allows you to follow the development branch as
@@ -53,7 +53,7 @@ update it anytime by running a ``git pull`` in this directory::
 Testing the development branch
 ------------------------------
 
-The frootlab shared library uses the Python builtin module :module:`unittest`
+The Frootlab Shared Library uses the Python builtin module :module:`unittest`
 for testing. Since the tests are not included in the distributed package at you
 are required to install the development branch, as described above. Thereupon
 you have to switch to the repository directory and run::

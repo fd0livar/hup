@@ -1,12 +1,12 @@
-Frootlab shared library - Base Modules
-======================================
+Frootlab Shared Library
+=======================
 
 .. toctree::
    :maxdepth: 2
 
    Introduction <introduction>
    Installation <install>
-   API Reference <api/base>
+   API Reference <api/flib>
    Glossary <glossary>
    License <license>
 
