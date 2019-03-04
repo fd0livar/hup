@@ -24,7 +24,7 @@ application in other projects as well.
 
 """
 
-__version__ = '0.1.0'
+__version__ = '0.9.0'
 __license__ = 'GPLv3'
 __copyright__ = 'Copyright (c) 2019 Frootlab Developers'
 __email__ = 'frootlab@gmail.com'

@@ -44,8 +44,8 @@ class TestEnv(test.ModuleTest):
         self.pkg_dirs = ['package_dir', 'package_data_dir', 'package_temp_dir']
         self.site_dirs = ['site_temp_dir']
         self.app_vars = [
-            'name', 'author', 'license', 'encoding', 'hostname',
-            'username', 'osname']
+            'name', 'copyright', 'license', 'encoding', 'hostname', 'username',
+            'osname']
 
     def is_dir_valid(
             self, dirname: str, path: pathlib.Path, appname: str,
