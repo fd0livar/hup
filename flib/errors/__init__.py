@@ -1,14 +1,15 @@
 # -*- coding: utf-8 -*-
 # Copyright (C) 2019 Frootlab Developers
 #
-# This file is part of the Frootlab Shared Library, https://github.com/frootlab
+# This file is part of the Frootlab Shared Library (flib)
+# https://github.com/frootlab/flib
 #
-#  The Frootlab Shared Library (flib) is free software: you can redistribute it
-#  and/or modify it under the terms of the GNU General Public License as
-#  published by the Free Software Foundation, either version 3 of the License,
-#  or (at your option) any later version.
+#  The Frootlab Shared Library is free software: you can redistribute it and/or
+#  modify it under the terms of the GNU General Public License as published by
+#  the Free Software Foundation, either version 3 of the License, or (at your
+#  option) any later version.
 #
-#  The Frootlab Shared Library (flib) is distributed in the hope that it will be
+#  The Frootlab Shared Library is distributed in the hope that it will be
 #  useful, but WITHOUT ANY WARRANTY; without even the implied warranty of
 #  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General
 #  Public License for more details. You should have received a copy of the GNU
@@ -43,8 +44,10 @@ def _repr_items(obj: Collection, sep: str = 'and') -> str:
     """
     if isinstance(obj, str):
         return repr(obj)
+
     if hasattr(obj, '__name__'):
         return repr(getattr(obj, '__name__', ''))
+
     if isinstance(obj, Collection):
         if isinstance(obj, set):
             item = 'element'
@@ -61,6 +64,7 @@ def _repr_items(obj: Collection, sep: str = 'and') -> str:
             items = [repr(str(each)) for each in obj]
             return f'{item}s ' + sep.join(items)
         return f'some {item}s'
+
     return repr(obj)
 
 #
@@ -96,6 +100,7 @@ class InvalidTypeError(UserAssert, TypeError):
 
     def __init__(self, name: str, obj: object, info: object = None) -> None:
         has = obj.__class__.__name__
+
         if isinstance(info, str):
             msg = f"{name} requires to be {info}"
         elif isinstance(info, type):
@@ -106,6 +111,7 @@ class InvalidTypeError(UserAssert, TypeError):
             msg = f"{name} requires to be of type {should} not {has}"
         else:
             msg = f"{name} has invalid type {has}"
+
         super().__init__(msg)
 
 class InvalidClassError(UserAssert, TypeError):
@@ -306,13 +312,13 @@ class ProxyError(UserError):
     """Base Exception for Proxy Errors."""
 
 class PushError(ProxyError):
-    """Raises when a push-request could not be finished."""
+    """Raise when a push-request could not be finished."""
 
 class PullError(ProxyError):
-    """Raises when a pull-request could not be finished."""
+    """Raise when a pull-request could not be finished."""
 
 class ConnectError(ProxyError):
-    """Raises when a proxy connection can not be established."""
+    """Raise when a proxy connection can not be established."""
 
 class DisconnectError(ProxyError):
-    """Raises when a proxy connection can not be closed."""
+    """Raise when a proxy connection can not be closed."""

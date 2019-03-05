@@ -1,21 +1,22 @@
 # -*- coding: utf-8 -*-
 # Copyright (C) 2019 Frootlab Developers
 #
-# This file is part of the Frootlab Shared Library, https://github.com/frootlab
+# This file is part of the Frootlab Shared Library (flib)
+# https://github.com/frootlab/flib
 #
-#  The Frootlab Shared Library (flib) is free software: you can redistribute it
-#  and/or modify it under the terms of the GNU General Public License as
-#  published by the Free Software Foundation, either version 3 of the License,
-#  or (at your option) any later version.
+#  The Frootlab Shared Library is free software: you can redistribute it and/or
+#  modify it under the terms of the GNU General Public License as published by
+#  the Free Software Foundation, either version 3 of the License, or (at your
+#  option) any later version.
 #
-#  The Frootlab Shared Library (flib) is distributed in the hope that it will be
+#  The Frootlab Shared Library is distributed in the hope that it will be
 #  useful, but WITHOUT ANY WARRANTY; without even the implied warranty of
 #  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General
 #  Public License for more details. You should have received a copy of the GNU
 #  General Public License along with the frootlab shared library. If not, see
 #  <http://www.gnu.org/licenses/>.
 #
-"""String conversion functions."""
+"""Data type dependent string representation of objects."""
 
 __license__ = 'GPLv3'
 __copyright__ = 'Copyright (c) 2019 Frootlab Developers'
@@ -26,7 +27,7 @@ __authors__ = ['Patrick Michl <patrick.michl@gmail.com>']
 import ast
 from datetime import datetime as Date
 import string
-from pathlib import Path
+import pathlib
 import pyparsing as pp
 from flib.base import env, pkg
 from flib.typing import check
@@ -64,6 +65,7 @@ def from_str(text: str, charset: OptStr = None, spacer: OptStr = None) -> str:
     """
     if charset:
         charset = charset.lower()
+
     if charset == 'printable':
         # TODO: if spacer is not None: test if spacer is printable
         # Get set of non-printable ASCII characters
@@ -73,9 +75,10 @@ def from_str(text: str, charset: OptStr = None, spacer: OptStr = None) -> str:
         # Replace non printable characters by spacer
         mapping = {ord(char): spacer for char in ascii_non_printable}
         return text.translate(mapping)
+
     if charset in ['uax31', 'uax-31', 'identifier']:
-        # TODO: if spacer is not None: test if spacer is printable
-        # # Interpret '-', '(', ')' and ' ' as '_'
+        # TODO: If spacer is not None: test if spacer is printable
+        # Interpret '-', '(', ')' and ' ' as '_'
         # text = text.strip(' ').translate(str.maketrans('- ', '__'))
         # Get set of non-identifier ASCII characters
         ascii_charset = set(chr(i) for i in range(128))
@@ -85,6 +88,7 @@ def from_str(text: str, charset: OptStr = None, spacer: OptStr = None) -> str:
         # Replace non identifiable characters by spacer
         mapping = {ord(char): spacer for char in ascii_nonid_charset}
         return text.translate(mapping)
+
     return text
 
 def decode(
@@ -310,7 +314,7 @@ def as_dict(text: str, delim: str = ',') -> dict:
 
     return d
 
-def as_path(text: str, expand: bool = True) -> Path:
+def as_path(text: str, expand: bool = True) -> pathlib.Path:
     """Convert text into list.
 
     Args:
@@ -328,7 +332,7 @@ def as_path(text: str, expand: bool = True) -> Path:
 
     if expand:
         return env.expand(text)
-    return Path(text)
+    return pathlib.Path(text)
 
 def as_datetime(text: str, fmt: OptStr = None) -> Date:
     """Convert text to datetime.

@@ -1,15 +1,16 @@
 # -*- coding: utf-8 -*-
-# Copyright (c) 2019 Frootlab Developers
-# Copyright (c) 2014-2019 AxiaCore S.A.S.
+# Copyright (C) 2019 Frootlab Developers
+# Copyright (C) 2014-2019 AxiaCore S.A.S.
 #
 # §1 This file is part of the Frootlab Shared Library (flib)
+# https://github.com/frootlab/flib
 #
-#  The Frootlab Shared Library (flib) is free software: you can redistribute it
-#  and/or modify it under the terms of the GNU General Public License as
-#  published by the Free Software Foundation, either version 3 of the License,
-#  or (at your option) any later version.
+#  The Frootlab Shared Library is free software: you can redistribute it and/or
+#  modify it under the terms of the GNU General Public License as published by
+#  the Free Software Foundation, either version 3 of the License, or (at your
+#  option) any later version.
 #
-#  The Frootlab Shared Library (flib) is distributed in the hope that it will be
+#  The Frootlab Shared Library is distributed in the hope that it will be
 #  useful, but WITHOUT ANY WARRANTY; without even the implied warranty of
 #  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General
 #  Public License for more details. You should have received a copy of the GNU
@@ -17,6 +18,7 @@
 #  <http://www.gnu.org/licenses/>.
 #
 # §2 Parts of this file are based on py-expression-eval 0.3.6
+# https://github.com/Axiacore/py-expression-eval
 #
 #  py-expression-eval is free software: you can redistribute it and/or modify it
 #  under the terms of the MIT License as published by the Massachusetts
