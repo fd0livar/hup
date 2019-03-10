@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+#
 # Copyright (C) 2019 Frootlab Developers
 #
 # This file is part of the Frootlab Shared Library (flib)
@@ -22,22 +23,32 @@ This file does only contain a selection of the most common options. For a full
 list see the documentation: http://www.sphinx-doc.org/en/master/config
 
 """
+__copyright__ = '2019 Frootlab Developers'
 __license__ = 'GPLv3'
-__copyright__ = 'Copyright (c) 2019 Frootlab Developers'
-__email__ = 'frootlab@gmail.com'
 __docformat__ = 'google'
+__author__ = 'Frootlab Developers'
+__email__ = 'frootlab@gmail.com'
 __authors__ = ['Patrick Michl <patrick.michl@gmail.com>']
+
+import pathlib
+import re
+
+# Parse top level module for attributes
+text = pathlib.Path('../flib/__init__.py').read_text()
+pattern = r"^[ ]*__([^\d\W]\w*)__[ ]*=[ ]*['\"]([^'\"]*)['\"]"
+matches = re.finditer(pattern, text, re.M)
+pkg = {str(m.group(1)): str(m.group(2)) for m in matches}
+
+# Define module variables used by Sphinx
+project = 'flib'
+copyright = pkg['copyright']
+author = pkg['author']
+version = pkg['version']
+release = pkg['version']
 
 import os
 import sys
 sys.path.insert(0, os.path.abspath('..'))
-import flib as package
-
-project = package.__name__
-copyright = package.__copyright__
-author = package.__author__
-version = package.__version__
-release = package.__version__
 
 add_module_names = False
 

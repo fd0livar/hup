@@ -3,16 +3,17 @@ Frootlab Shared Library
 
 .. toctree::
    :maxdepth: 2
+   :numbered:
 
    Introduction <introduction>
    Installation <install>
-   API Reference <api/flib>
+   API Reference <api/modules>
    Glossary <glossary>
    License <license>
 
-Index
------
+Appendix
+--------
 
-* :ref:`genindex`
 * :ref:`modindex`
+* :ref:`genindex`
 * :ref:`search`

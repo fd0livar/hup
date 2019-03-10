@@ -19,10 +19,11 @@
 #
 """Setuptools based installation."""
 
+__copyright__ = '2019 Frootlab Developers'
 __license__ = 'GPLv3'
-__copyright__ = 'Copyright (c) 2019 Frootlab Developers'
-__email__ = 'frootlab@gmail.com'
 __docformat__ = 'google'
+__author__ = 'Frootlab Developers'
+__email__ = 'frootlab@gmail.com'
 __authors__ = ['Patrick Michl <patrick.michl@gmail.com>']
 
 import pathlib
@@ -32,20 +33,17 @@ import setuptools
 def install() -> None:
     """Setuptools based installation script."""
 
-    # Get module variables from the package's top level module
+    # Parse top level module for attributes
     text = pathlib.Path('./flib/__init__.py').read_text()
-    rekey = "__([a-zA-Z][a-zA-Z0-9_]*)__"
-    reval = r"['\"]([^'\"]*)['\"]"
-    pattern = f"^[ ]*{rekey}[ ]*=[ ]*{reval}"
-    pkg_vars = {}
-    for mo in re.finditer(pattern, text, re.M):
-        pkg_vars[str(mo.group(1))] = str(mo.group(2))
+    pattern = r"^[ ]*__([^\d\W]\w*)__[ ]*=[ ]*['\"]([^'\"]*)['\"]"
+    matches = re.finditer(pattern, text, re.M)
+    pkg = {str(m.group(1)): str(m.group(2)) for m in matches}
 
     # Install package
     setuptools.setup(
         name='flib',
-        version=pkg_vars['version'],
-        description='multi-purpose library',
+        version=pkg['version'],
+        description=pkg['description'],
         long_description=pathlib.Path('.', 'README.rst').read_text(),
         long_description_content_type='text/x-rst',
         classifiers=[
@@ -60,10 +58,10 @@ def install() -> None:
             'library '
             'shared-library '
             'python-library '),
-        url='https://github.com/frootlab/flib',
-        author=pkg_vars['author'],
-        author_email=pkg_vars['email'],
-        license=pkg_vars['license'],
+        url=pkg['url'],
+        author=pkg['author'],
+        author_email=pkg['email'],
+        license=pkg['license'],
         packages=['flib'],
         python_requires='>=3.7',
         install_requires=[

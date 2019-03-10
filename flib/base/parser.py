@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+#
 # Copyright (C) 2019 Frootlab Developers
 # Copyright (C) 2014-2019 AxiaCore S.A.S.
 #
@@ -48,12 +49,13 @@
 #  py-expression-eval is ported to Python and modified by: Vera Mazhuga
 #  <ctrl-alt-delete@live.com>, http://vero4ka.info/
 #
-"""Generic Expression Parser."""
+"""Multi-Purpose Expression Parser."""
 
+__copyright__ = '2019 Frootlab Developers'
 __license__ = 'GPLv3'
-__copyright__ = 'Copyright (c) 2019 Frootlab Developers'
-__email__ = 'frootlab@gmail.com'
 __docformat__ = 'google'
+__author__ = 'Frootlab Developers'
+__email__ = 'frootlab@gmail.com'
 __authors__ = ['Patrick Michl <patrick.michl@gmail.com>']
 
 import builtins

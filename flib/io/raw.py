@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+#
 # Copyright (C) 2019 Frootlab Developers
 #
 # This file is part of the Frootlab Shared Library (flib)
@@ -18,9 +19,11 @@
 #
 """File I/O for binary files."""
 
+__copyright__ = '2019 Frootlab Developers'
 __license__ = 'GPLv3'
 __docformat__ = 'google'
-__maintainer__ = 'Frootlab Developers <frootlab@gmail.com>'
+__author__ = 'Frootlab Developers'
+__email__ = 'frootlab@gmail.com'
 __authors__ = ['Patrick Michl <patrick.michl@gmail.com>']
 
 import contextlib

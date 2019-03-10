@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+#
 # Copyright (C) 2019 Frootlab Developers
 #
 # This file is part of the Frootlab Shared Library (flib)
@@ -26,11 +27,11 @@
     * Add get_file for 'user_package_log', 'temp_log' etc.
 
 """
-
+__copyright__ = '2019 Frootlab Developers'
 __license__ = 'GPLv3'
-__copyright__ = 'Copyright (c) 2019 Frootlab Developers'
-__email__ = 'frootlab@gmail.com'
 __docformat__ = 'google'
+__author__ = 'Frootlab Developers'
+__email__ = 'frootlab@gmail.com'
 __authors__ = ['Patrick Michl <patrick.michl@gmail.com>']
 
 from distutils import sysconfig
