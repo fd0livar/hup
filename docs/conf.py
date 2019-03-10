@@ -33,14 +33,17 @@ __authors__ = ['Patrick Michl <patrick.michl@gmail.com>']
 import pathlib
 import re
 
+# Module Variables
+project = 'Frootlab Shared Library'
+package = 'flib'
+
 # Parse top level module for attributes
-text = pathlib.Path('../flib/__init__.py').read_text()
+text = pathlib.Path(f'../{package}/__init__.py').read_text()
 pattern = r"^[ ]*__([^\d\W]\w*)__[ ]*=[ ]*['\"]([^'\"]*)['\"]"
 matches = re.finditer(pattern, text, re.M)
 pkg = {str(m.group(1)): str(m.group(2)) for m in matches}
 
 # Define module variables used by Sphinx
-project = 'flib'
 copyright = pkg['copyright']
 author = pkg['author']
 version = pkg['version']
@@ -56,10 +59,10 @@ add_module_names = False
 
 def run_apidoc(_) -> None:
     from sphinx.apidoc import main
-    sys.path.append(os.path.join(os.path.dirname(__file__), '..', 'flib'))
+    sys.path.append(os.path.join(os.path.dirname(__file__), '..', package))
     cur_dir = os.path.abspath(os.path.dirname(__file__))
     out_dir = os.path.join(cur_dir, 'api')
-    pkg_dir = os.path.join(cur_dir, '..', 'flib')
+    pkg_dir = os.path.join(cur_dir, '..', package)
     main(['', '-o', out_dir, pkg_dir, '--separate'])
 
 def setup(app) -> None:
@@ -143,7 +146,7 @@ html_static_path = ['_static']
 # -- Options for HTMLHelp output ---------------------------------------------
 
 # Output file base name for HTML help builder.
-htmlhelp_basename = 'flibdoc'
+htmlhelp_basename = f'{package}doc'
 
 # -- Options for LaTeX output ------------------------------------------------
 
@@ -169,26 +172,24 @@ latex_elements = { # type: ignore
 # (source start file, target name, title,
 #  author, documentclass [howto, manual, or own class]).
 latex_documents = [
-    (master_doc, 'flib.tex', 'Frootlab Shared Library',
-     'Patrick Michl', 'manual'),
+    (master_doc, f'{package}.tex', project, 'Patrick Michl', 'manual'),
 ]
 
 # One entry per manual page. List of tuples
 # (source start file, name, description, authors, manual section).
 man_pages = [
-    (master_doc, 'flib-', 'Frootlab Shared Library', [author], 1)
+    (master_doc, f'{package}-', project, [author], 1)
 ]
 
 # Grouping the document tree into Texinfo files. List of tuples
 # (source start file, target name, title, author,
 #  dir menu entry, description, category)
 texinfo_documents = [
-    (master_doc, 'flib', 'Frootlab Shared Library',
-     author, 'flib', 'Frootlab Shared Library', 'Miscellaneous'),
+    (master_doc, package, project, author, package, project, 'Miscellaneous'),
 ]
 
 # Bibliographic Dublin Core info.
-epub_title = package.__name__
+epub_title = project
 
 # The unique identifier of the text. This can be a ISBN number or the project
 # homepage.
