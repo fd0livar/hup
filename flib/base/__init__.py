@@ -17,7 +17,7 @@
 #  General Public License along with the frootlab shared library. If not, see
 #  <http://www.gnu.org/licenses/>.
 #
-"""Elementary Modules."""
+"""Various Elementary Modules."""
 
 __copyright__ = '2019 Frootlab Developers'
 __license__ = 'GPLv3'

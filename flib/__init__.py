@@ -25,7 +25,7 @@ the comprised modules, however, is kept generic and well documented, to
 facilitate their application in other open source projects as well.
 
 """
-__version__ = '0.9.0'
+__version__ = '0.9.1'
 __license__ = 'GPLv3'
 __copyright__ = '2019 Frootlab Developers'
 __description__ = 'Shared Library'

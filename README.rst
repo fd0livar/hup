@@ -15,9 +15,10 @@ Frootlab Shared Library
 
 The *Frootlab Shared Library* (flib) is a multi-purpose `Python`_ library, which
 primarily aims to support `Frootlab`_ projects by serving as a common base
-library. It was originally created in 2019 for `Project Infimum`_ to separate
-`Pandora`_ and `Nemoa`_. The majority of the provided modules, however, are kept
-generic to facilitate their application beyond Frootlab projects as well.
+library. It was originally created in 2019 for the `Smart Analytics`_ project to
+separate `Pandora`_ and `Nemoa`_. The majority of the provided modules, however,
+are kept generic to facilitate their application beyond Frootlab projects as
+well.
 
 The Frootlab Shared Library is `open source`_, based on the `Python`_
 programming language and actively developed at `Frootlab`_.
@@ -64,10 +65,10 @@ under the `GPLv3 license`_::
      Patrick Michl <patrick.michl@gmail.com>
 
 .. _Python: https://www.python.org/
+.. _Smart Analytics: https://github.com/orgs/frootlab/projects
 .. _Frootlab: https://github.com/frootlab
 .. _Nemoa: https://github.com/frootlab/nemoa
 .. _Pandora: https://github.com/frootlab/pandora
-.. _Project Infimum: https://github.com/orgs/frootlab/projects
 .. _online manual: https://flib.readthedocs.io/en/latest/
 .. _PDF: https://readthedocs.org/projects/flib/downloads/pdf/latest/
 .. _EPUB: https://readthedocs.org/projects/flib/downloads/epub/latest/

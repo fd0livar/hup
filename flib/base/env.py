@@ -17,16 +17,8 @@
 #  General Public License along with the frootlab shared library. If not, see
 #  <http://www.gnu.org/licenses/>.
 #
-"""Environmental information and functions for filesystem operations.
+"""Environmental integration."""
 
-.. References:
-.. _appdirs:
-    http://github.com/ActiveState/appdirs
-
-.. TODO::
-    * Add get_file for 'user_package_log', 'temp_log' etc.
-
-"""
 __copyright__ = '2019 Frootlab Developers'
 __license__ = 'GPLv3'
 __docformat__ = 'google'
@@ -58,17 +50,14 @@ from flib.typing import OptPathLike, PathLike, StrDict, StrDictOfPaths
 #
 
 # Nested paths for tree structured path references
-# TODO (patrick.michl@gmail.com): currently (Python 3.7.1) recursive type
+# TODO (patrick.michl@gmail.com): currently (in Python 3.7.1) recursive type
 # definition is not fully supported by the typing module. When recursive type
-# definition is available replace the following lines by their respective
-# recursive definitions
+# definition is available replace the following lines by the definition:
+# NestPath = Sequence[Union[str, Path, 'NestPath']]
 PathLikeSeq = Sequence[PathLike]
 PathLikeSeq2 = Sequence[Union[PathLike, PathLikeSeq]]
 PathLikeSeq3 = Sequence[Union[PathLike, PathLikeSeq, PathLikeSeq2]]
 NestPath = Union[PathLike, PathLikeSeq, PathLikeSeq2, PathLikeSeq3]
-#NestPath = Sequence[Union[str, Path, 'NestPath']]
-
-_recursion_limit = sys.getrecursionlimit()
 
 #
 # Public Module Functions
@@ -166,6 +155,7 @@ def get_vars(*args: Any, pkgname: OptStr = None, **kwds: Any) -> StrDict:
         update_vars(*args, pkgname=pkgname, **kwds)
     return globals()['cache'][pkgname]['vars'].copy()
 
+
 def update_vars(filepath: OptPathLike = None, pkgname: OptStr = None) -> None:
     """Update environment and application variables.
 
@@ -188,12 +178,9 @@ def update_vars(filepath: OptPathLike = None, pkgname: OptStr = None) -> None:
     pkgname = pkgname or pkg.get_root_name(stack.get_caller_module_name(-2))
     filepath = filepath or pkg.get_module(pkgname).__file__
     text = pathlib.Path(filepath).read_text()
-    rekey = "__([a-zA-Z][a-zA-Z0-9_]*)__"
-    reval = r"['\"]([^'\"]*)['\"]"
-    pattern = f"^[ ]*{rekey}[ ]*=[ ]*{reval}"
-    info = {}
-    for match in re.finditer(pattern, text, re.M):
-        info[str(match.group(1))] = str(match.group(2))
+    pattern = r"^[ ]*__([^\d\W]\w*)__[ ]*=[ ]*['\"]([^'\"]*)['\"]"
+    matches = re.finditer(pattern, text, re.M)
+    info = {str(m.group(1)): str(m.group(2)) for m in matches}
     info['name'] = info.get('name', pkgname)
 
     # Get plattform specific environment variables
@@ -310,6 +297,8 @@ def update_dirs(
             be "<major>.<minor>". Only applied when appname is present.
         **kwds: Optional directory name specific keyword arguments. For more
             information see `appdirs`_.
+
+    .. _appdirs: http://github.com/ActiveState/appdirs
 
     """
     # Get package name from callers top level module
@@ -583,7 +572,7 @@ def expand(
                 del pvars[key]
             update = True
         i += 1
-        if i > _recursion_limit:
+        if i > sys.getrecursionlimit():
             raise RecursionError('cyclic dependency in variables detected')
         path = pathlib.Path(path)
 
