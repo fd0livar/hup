@@ -55,7 +55,7 @@ the [issue tracker](https://github.com/frootlab/flib/issues) provided by GitHub.
 Currently, as the Frootlab Developers team still is growing, we do not provide
 any Contribution Guide Lines to collaboration partners. However, if you are
 interested to join the team, we would be glad, to receive an informal
-[application](application@frootlab.org).
+[application](mailto:application@frootlab.org).
 
 License
 -------
