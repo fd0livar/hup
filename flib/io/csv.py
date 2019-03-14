@@ -42,8 +42,8 @@ __copyright__ = '2019 Frootlab Developers'
 __license__ = 'GPLv3'
 __docformat__ = 'google'
 __author__ = 'Frootlab Developers'
-__email__ = 'frootlab@gmail.com'
-__authors__ = ['Patrick Michl <patrick.michl@gmail.com>']
+__email__ = 'contact@frootlab.org'
+__authors__ = ['Patrick Michl <patrick.michl@frootlab.org>']
 
 import csv
 import contextlib
@@ -196,7 +196,7 @@ class Reader(HandlerBase):
 
     """
 
-    _reader: Iterator # TODO (patrick.michl@gmail.com): specify!
+    _reader: Iterator # TODO (patrick.michl@frootlab.org): specify!
     _usecols: OptIntTuple
     _fields: Fields
 
@@ -250,7 +250,7 @@ class Writer(HandlerBase):
 
     """
 
-    _writer: Any # TODO (patrick.michl@gmail.com): specify!
+    _writer: Any # TODO (patrick.michl@frootlab.org): specify!
 
     def __init__(
             self, file: FileRef, header: Header, comment: str = '',

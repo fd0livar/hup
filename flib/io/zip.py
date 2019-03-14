@@ -23,8 +23,8 @@ __copyright__ = '2019 Frootlab Developers'
 __license__ = 'GPLv3'
 __docformat__ = 'google'
 __author__ = 'Frootlab Developers'
-__email__ = 'frootlab@gmail.com'
-__authors__ = ['Patrick Michl <patrick.michl@gmail.com>']
+__email__ = 'contact@frootlab.org'
+__authors__ = ['Patrick Michl <patrick.michl@frootlab.org>']
 
 import time
 import warnings
@@ -145,7 +145,7 @@ class File:
                 with ZipFile(self._path, mode='r') as fh:
                     for zinfo in fh.infolist():
                         data = fh.read(zinfo, pwd=pwd)
-                        # TODO (patrick.michl@gmail.com): The zipfile standard
+                        # TODO (patrick.michl@frootlab.org): The zipfile standard
                         # module currently does not support encryption in write
                         # mode of new ZipFiles. See:
                         # https://docs.python.org/3/library/zipfile.html
@@ -342,7 +342,7 @@ class File:
         tgt_info = ZipInfo(filename=tgt_file, date_time=tgt_time) # type: ignore
 
         # Write binary data to target file
-        # TODO (patrick.michl@gmail.com): The zipfile standard module currently
+        # TODO (patrick.michl@frootlab.org): The zipfile standard module currently
         # does not support encryption in write mode. See:
         # https://docs.python.org/3/library/zipfile.html
         # When support is provided, the below line shall be replaced by:
@@ -422,7 +422,7 @@ class File:
         # Copy file to archive
         with src_file.open('rb') as src:
             data = src.read()
-        # TODO (patrick.michl@gmail.com): The zipfile standard module currently
+        # TODO (patrick.michl@frootlab.org): The zipfile standard module currently
         # does not support encryption in write mode. See:
         # https://docs.python.org/3/library/zipfile.html
         # When support is provided, the below line shall be replaced by:
@@ -675,7 +675,7 @@ class File:
         # Catch Warning for duplicate files
         with warnings.catch_warnings():
             warnings.simplefilter("ignore", UserWarning)
-            # TODO (patrick.michl@gmail.com): The zipfile standard
+            # TODO (patrick.michl@frootlab.org): The zipfile standard
             # module currently does not support encryption in write
             # mode of new ZipFiles. See:
             # https://docs.python.org/3/library/zipfile.html

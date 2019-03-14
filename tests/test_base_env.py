@@ -23,8 +23,8 @@ __copyright__ = '2019 Frootlab Developers'
 __license__ = 'GPLv3'
 __docformat__ = 'google'
 __author__ = 'Frootlab Developers'
-__email__ = 'frootlab@gmail.com'
-__authors__ = ['Patrick Michl <patrick.michl@gmail.com>']
+__email__ = 'contact@frootlab.org'
+__authors__ = ['Patrick Michl <patrick.michl@frootlab.org>']
 
 import pathlib
 from flib.base import env, test
@@ -62,7 +62,7 @@ class TestEnv(test.ModuleTest):
         if dirname in self.dist_dirs: # Check distribution dir
             return appname in str(path)
         if dirname in self.pkg_dirs: # Check package dir
-            # TODO (patrick.michl@gmail.com): Check if root package name is in
+            # TODO (patrick.michl@frootlab.org): Check if root package name is in
             # str(path)
             return True
         if dirname in self.site_dirs:

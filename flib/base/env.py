@@ -23,8 +23,8 @@ __copyright__ = '2019 Frootlab Developers'
 __license__ = 'GPLv3'
 __docformat__ = 'google'
 __author__ = 'Frootlab Developers'
-__email__ = 'frootlab@gmail.com'
-__authors__ = ['Patrick Michl <patrick.michl@gmail.com>']
+__email__ = 'contact@frootlab.org'
+__authors__ = ['Patrick Michl <patrick.michl@frootlab.org>']
 
 from distutils import sysconfig
 import fnmatch
@@ -50,7 +50,7 @@ from flib.typing import OptPathLike, PathLike, StrDict, StrDictOfPaths
 #
 
 # Nested paths for tree structured path references
-# TODO (patrick.michl@gmail.com): currently (in Python 3.7.1) recursive type
+# TODO (patrick.michl@frootlab.org): currently (in Python 3.7.1) recursive type
 # definition is not fully supported by the typing module. When recursive type
 # definition is available replace the following lines by the definition:
 # NestPath = Sequence[Union[str, Path, 'NestPath']]
