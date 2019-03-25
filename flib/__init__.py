@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 #
-# Copyright (C) 2019 Frootlab Developers
+# Copyright (C) 2019 Frootlab
 #
 # This file is part of the Frootlab Shared Library (flib)
-# https://github.com/frootlab/flib
+# https://www.frootlab.org/flib
 #
 #  The Frootlab Shared Library is free software: you can redistribute it and/or
 #  modify it under the terms of the GNU General Public License as published by
@@ -27,9 +27,9 @@ facilitate their application in other open source projects as well.
 """
 __version__ = '0.9.1'
 __license__ = 'GPLv3'
-__copyright__ = '2019 Frootlab Developers'
+__copyright__ = '2019 Frootlab'
 __description__ = 'Shared Library'
-__url__ = 'https://github.com/frootlab/flib'
+__url__ = 'https://www.frootlab.org/flib'
 __organization__ = 'Frootlab'
 __author__ = 'Frootlab Developers'
 __email__ = 'contact@frootlab.org'
