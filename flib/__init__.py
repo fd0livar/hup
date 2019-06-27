@@ -25,10 +25,10 @@ the comprised modules, however, is kept generic and well documented, to
 facilitate their application in other open source projects as well.
 
 """
-__version__ = '0.9.1'
+__version__ = '0.9.2'
 __license__ = 'GPLv3'
 __copyright__ = '2019 Frootlab'
-__description__ = 'Shared Library'
+__description__ = 'Frootlab Shared Library'
 __url__ = 'https://www.frootlab.org/flib'
 __organization__ = 'Frootlab'
 __author__ = 'Frootlab Developers'

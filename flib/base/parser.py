@@ -89,14 +89,19 @@ _SIGN = 64
 _CALL = 128
 _NULL = 256
 
-class _Pack(list): # Protected Class for packed Arguments
+#
+# Arguments
+#
+
+class _Pack(list): # Protected Sentinel Class for packed Arguments
     pass
 
 class _Null: # Protected Sentinel Class for an empty Argument list
     pass
 
-def _pack(a: Any, b: Any) -> _Pack:
-    if isinstance(a, list):
+def pack(a: Any, b: Any) -> _Pack:
+    """Pack Arguments together."""
+    if isinstance(a, _Pack):
         return _Pack(a + [b])
     return _Pack([a, b])
 
@@ -190,7 +195,7 @@ class PyOperators(Vocabulary):
 
         # Binding Operators
         self.update([
-            Symbol(BINARY, ',', _pack, 13)]) # Sequence packing
+            Symbol(BINARY, ',', pack, 13)]) # Sequence packing
 
         # Arithmetic Operators
         self.update([
@@ -261,71 +266,6 @@ class PyBuiltin(PyOperators):
             builtin.append(Symbol(CONSTANT, name, obj))
 
         self.update(builtin)
-
-class PyExprEval(Vocabulary):
-    """Symbols used by py-expression-eval."""
-
-    def __init__(self) -> None:
-        super().__init__()
-
-        rnd: AnyOp = lambda x: random.uniform(0., x)
-        iif: AnyOp = lambda a, b, c: b if a else c
-        concat: AnyOp = lambda *args: ''.join(map(str, args))
-        iand: AnyOp = lambda a, b: a and b
-        ior: AnyOp = lambda a, b: a or b
-
-        self.update([
-            # Sequence Operators
-            Symbol(BINARY, ',', _pack, 0, True),
-            Symbol(BINARY, '||', concat, 1),
-
-            # Arithmetic Operators
-            Symbol(UNARY, '-', operator.neg, 0, True),
-            Symbol(BINARY, '+', operator.add, 2, True),
-            Symbol(BINARY, '-', operator.sub, 2, True),
-            Symbol(BINARY, '*', operator.mul, 3, True),
-            Symbol(BINARY, '/', operator.truediv, 4, True),
-            Symbol(BINARY, '%', operator.mod, 4, True),
-            Symbol(BINARY, '^', math.pow, 6),
-
-            # Ordering Operators
-            Symbol(BINARY, '==', operator.eq, 1, True),
-            Symbol(BINARY, '!=', operator.ne, 1, True),
-            Symbol(BINARY, '>', operator.gt, 1, True),
-            Symbol(BINARY, '<', operator.lt, 1, True),
-            Symbol(BINARY, '>=', operator.ge, 1, True),
-            Symbol(BINARY, '<=', operator.le, 1, True),
-
-            # Boolean Operators
-            Symbol(BINARY, 'and', iand, 0, True),
-            Symbol(BINARY, 'or', ior, 0, True),
-
-            # Functions
-            Symbol(FUNCTION, 'abs', abs, 0, True),
-            Symbol(FUNCTION, 'round', round, 0, True),
-            Symbol(FUNCTION, 'min', min, 0, True),
-            Symbol(FUNCTION, 'max', max, 0, True),
-            Symbol(FUNCTION, 'sin', math.sin, 0),
-            Symbol(FUNCTION, 'cos', math.cos, 0),
-            Symbol(FUNCTION, 'tan', math.tan, 0),
-            Symbol(FUNCTION, 'asin', math.asin, 0),
-            Symbol(FUNCTION, 'acos', math.acos, 0),
-            Symbol(FUNCTION, 'atan', math.atan, 0),
-            Symbol(FUNCTION, 'sqrt', math.sqrt, 0),
-            Symbol(FUNCTION, 'log', math.log, 0),
-            Symbol(FUNCTION, 'ceil', math.ceil, 0),
-            Symbol(FUNCTION, 'floor', math.floor, 0),
-            Symbol(FUNCTION, 'exp', math.exp, 0),
-            Symbol(FUNCTION, 'random', rnd, 0),
-            Symbol(FUNCTION, 'fac', math.factorial, 0),
-            Symbol(FUNCTION, 'pow', math.pow, 0),
-            Symbol(FUNCTION, 'atan2', math.atan2, 0),
-            Symbol(FUNCTION, 'if', iif, 0),
-            Symbol(FUNCTION, 'concat', concat, 0),
-
-            # Constants
-            Symbol(CONSTANT, 'E', math.e, 0),
-            Symbol(CONSTANT, 'PI', math.pi, 0)])
 
 #
 # Tokens

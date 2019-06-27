@@ -27,6 +27,8 @@ __email__ = 'contact@frootlab.org'
 __authors__ = ['Patrick Michl <patrick.michl@frootlab.org>']
 
 import dataclasses
+import operator
+import math
 import unittest
 from unittest import mock
 from flib.base import parser, test
@@ -39,11 +41,86 @@ except ModuleNotFoundError:
     np = None
 
 #
+# Test Vocabulary for Parser
+#
+
+class PyExprEval(parser.Vocabulary):
+    """Symbols used by py-expression-eval 0.3.6."""
+
+    def __init__(self) -> None:
+        super().__init__()
+
+        rnd: AnyOp = lambda x: random.uniform(0., x)
+        iif: AnyOp = lambda a, b, c: b if a else c
+        concat: AnyOp = lambda *args: ''.join(map(str, args))
+        iand: AnyOp = lambda a, b: a and b
+        ior: AnyOp = lambda a, b: a or b
+
+        self.update([
+            # Sequence Operators
+            parser.Symbol(parser.BINARY, ',', parser.pack, 0, True),
+            parser.Symbol(parser.BINARY, '||', concat, 1),
+
+            # Arithmetic Operators
+            parser.Symbol(parser.UNARY, '-', operator.neg, 0, True),
+            parser.Symbol(parser.BINARY, '+', operator.add, 2, True),
+            parser.Symbol(parser.BINARY, '-', operator.sub, 2, True),
+            parser.Symbol(parser.BINARY, '*', operator.mul, 3, True),
+            parser.Symbol(parser.BINARY, '/', operator.truediv, 4, True),
+            parser.Symbol(parser.BINARY, '%', operator.mod, 4, True),
+            parser.Symbol(parser.BINARY, '^', math.pow, 6),
+
+            # Ordering Operators
+            parser.Symbol(parser.BINARY, '==', operator.eq, 1, True),
+            parser.Symbol(parser.BINARY, '!=', operator.ne, 1, True),
+            parser.Symbol(parser.BINARY, '>', operator.gt, 1, True),
+            parser.Symbol(parser.BINARY, '<', operator.lt, 1, True),
+            parser.Symbol(parser.BINARY, '>=', operator.ge, 1, True),
+            parser.Symbol(parser.BINARY, '<=', operator.le, 1, True),
+
+            # Boolean Operators
+            parser.Symbol(parser.BINARY, 'and', iand, 0, True),
+            parser.Symbol(parser.BINARY, 'or', ior, 0, True),
+
+            # Functions
+            parser.Symbol(parser.FUNCTION, 'abs', abs, 0, True),
+            parser.Symbol(parser.FUNCTION, 'round', round, 0, True),
+            parser.Symbol(parser.FUNCTION, 'min', min, 0, True),
+            parser.Symbol(parser.FUNCTION, 'max', max, 0, True),
+            parser.Symbol(parser.FUNCTION, 'sin', math.sin, 0),
+            parser.Symbol(parser.FUNCTION, 'cos', math.cos, 0),
+            parser.Symbol(parser.FUNCTION, 'tan', math.tan, 0),
+            parser.Symbol(parser.FUNCTION, 'asin', math.asin, 0),
+            parser.Symbol(parser.FUNCTION, 'acos', math.acos, 0),
+            parser.Symbol(parser.FUNCTION, 'atan', math.atan, 0),
+            parser.Symbol(parser.FUNCTION, 'sqrt', math.sqrt, 0),
+            parser.Symbol(parser.FUNCTION, 'log', math.log, 0),
+            parser.Symbol(parser.FUNCTION, 'ceil', math.ceil, 0),
+            parser.Symbol(parser.FUNCTION, 'floor', math.floor, 0),
+            parser.Symbol(parser.FUNCTION, 'exp', math.exp, 0),
+            parser.Symbol(parser.FUNCTION, 'random', rnd, 0),
+            parser.Symbol(parser.FUNCTION, 'fac', math.factorial, 0),
+            parser.Symbol(parser.FUNCTION, 'pow', math.pow, 0),
+            parser.Symbol(parser.FUNCTION, 'atan2', math.atan2, 0),
+            parser.Symbol(parser.FUNCTION, 'if', iif, 0),
+            parser.Symbol(parser.FUNCTION, 'concat', concat, 0),
+
+            # Constants
+            parser.Symbol(parser.CONSTANT, 'E', math.e, 0),
+            parser.Symbol(parser.CONSTANT, 'PI', math.pi, 0)])
+
+#
 # Test Cases
 #
 
 class TestParser(test.ModuleTest):
     module = parser
+
+    def test_pack(self) -> None:
+        self.assertCaseEqual(parser.pack, [
+            Case(('x', 'y'), {}, ['x', 'y']),
+            Case((['x', 'y'], 'z'), {}, [['x', 'y'], 'z']),
+            Case((parser.pack('x', 'y'), 'z'), {}, ['x', 'y', 'z'])])
 
     def test_parse(self) -> None:
         pass # Implicitely tested
@@ -515,12 +592,15 @@ class TestParser(test.ModuleTest):
             Case(('bool(locals())', ), {}, True)])
 
     def test_Parser(self) -> None:
-        # Implicitely tested within test_PyOperators(), test_PyBuiltin() and
-        # test_PyExprEval()
+        # Implicitely tested within test_PyOperators() and test_PyBuiltin()
         pass
 
-    def test_PyExprEval(self) -> None:
-        p = parser.Parser(vocabulary=parser.PyExprEval())
+    def test_Expression(self) -> None:
+        pass # Explicitely tested by partial test of the methods
+
+    def test_Expression_eval(self) -> None:
+
+        p = parser.Parser(vocabulary=PyExprEval())
         peval: AnyOp = lambda expr, *args: p.parse(expr).eval(*args)
 
         self.assertCaseEqual(peval, [
@@ -540,7 +620,7 @@ class TestParser(test.ModuleTest):
             Case(("concat('hi', ' ', 'u')", ), {}, 'hi u'),
             Case(('if(a>b, 5, 6)', 8, 3), {}, 5),
             Case(('if(a, b, c)', None, 1, 3), {}, 3),
-            Case(('a, 3', [1, 2]), {}, [1, 2, 3]),
+            Case(('a, 3', [1, 2]), {}, [[1, 2], 3]),
             Case((".1", ), {}, .1),
             Case((".5^3", ), {}, .125),
             Case(("16^.5", ), {}, 4.),
@@ -553,11 +633,8 @@ class TestParser(test.ModuleTest):
 
         self.assertRaises(ValueError, peval, '..5')
 
-    def test_Expression(self) -> None:
-        pass # Explicitely tested by partial test of the methods
-
     def test_Expression_subst(self) -> None:
-        p = parser.Parser(vocabulary=parser.PyExprEval())
+        p = parser.Parser(vocabulary=PyExprEval())
         peval: AnyOp = lambda e, v, w, *args: p.parse(e).subst(v, w).eval(*args)
 
         self.assertCaseEqual(peval, [
@@ -565,7 +642,7 @@ class TestParser(test.ModuleTest):
             Case(('a + 1', 'a', 'b', 3), {}, 4)])
 
     def test_Expression_simplify(self) -> None:
-        p = parser.Parser(vocabulary=parser.PyExprEval())
+        p = parser.Parser(vocabulary=PyExprEval())
         psubs: AnyOp = lambda e, d, *args: p.parse(e).simplify(d).eval(*args)
         pvars: AnyOp = lambda e, d: p.parse(e).simplify(d).variables
 
@@ -580,7 +657,7 @@ class TestParser(test.ModuleTest):
             Case(('x * (y * atan(1))', {'y': 4}), {}, ('x', ))])
 
     def test_Expression_to_string(self) -> None:
-        p = parser.Parser(vocabulary=parser.PyExprEval())
+        p = parser.Parser(vocabulary=PyExprEval())
         pstr: AnyOp = lambda e: str(p.parse(e))
 
         self.assertCaseEqual(pstr, [
@@ -588,7 +665,7 @@ class TestParser(test.ModuleTest):
             Case(("func(a,1.51,'ok')", ), {}, "func(a, 1.51, 'ok')")])
 
     def test_Expression_variables(self) -> None:
-        p = parser.Parser(vocabulary=parser.PyExprEval())
+        p = parser.Parser(vocabulary=PyExprEval())
         pvars: AnyOp = lambda e: p.parse(e).variables
 
         self.assertCaseEqual(pvars, [
@@ -619,7 +696,7 @@ class TestParser(test.ModuleTest):
             Case(('E_', ), {}, ('E_', ))])
 
     def test_Parser_symbols(self) -> None:
-        p = parser.Parser(vocabulary=parser.PyExprEval())
+        p = parser.Parser(vocabulary=PyExprEval())
         psyms: AnyOp = lambda e: p.parse(e).symbols
 
         self.assertCaseEqual(psyms, [
