@@ -3,20 +3,18 @@
 #
 # Copyright (C) 2019 Frootlab
 #
-# This file is part of the Frootlab Shared Library (flib)
-# https://www.frootlab.org/flib
+# This file is part of Frootlab Hup, https://www.frootlab.org/hup
 #
-#  The Frootlab Shared Library is free software: you can redistribute it and/or
-#  modify it under the terms of the GNU General Public License as published by
-#  the Free Software Foundation, either version 3 of the License, or (at your
-#  option) any later version.
+#  Hup is free software: you can redistribute it and/or modify it under the
+#  terms of the GNU General Public License as published by the Free Software
+#  Foundation, either version 3 of the License, or (at your option) any later
+#  version.
 #
-#  The Frootlab Shared Library is distributed in the hope that it will be
-#  useful, but WITHOUT ANY WARRANTY; without even the implied warranty of
-#  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General
-#  Public License for more details. You should have received a copy of the GNU
-#  General Public License along with the frootlab shared library. If not, see
-#  <http://www.gnu.org/licenses/>.
+#  Hup is distributed in the hope that it will be useful, but WITHOUT ANY
+#  WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR
+#  A PARTICULAR PURPOSE. See the GNU General Public License for more details.
+#  You should have received a copy of the GNU General Public License along with
+#  Hup. If not, see <http://www.gnu.org/licenses/>.
 #
 """Setuptools based installation."""
 
@@ -35,14 +33,14 @@ def install() -> None:
     """Setuptools based installation script."""
 
     # Parse top level module for attributes
-    text = pathlib.Path('./flib/__init__.py').read_text()
+    text = pathlib.Path('./hup/__init__.py').read_text()
     pattern = r"^[ ]*__([^\d\W]\w*)__[ ]*=[ ]*['\"]([^'\"]*)['\"]"
     matches = re.finditer(pattern, text, re.M)
     pkg = {str(m.group(1)): str(m.group(2)) for m in matches}
 
     # Install package
     setuptools.setup(
-        name='flib',
+        name='hup',
         version=pkg['version'],
         description=pkg['description'],
         long_description=pathlib.Path('.', 'README.md').read_text(),
@@ -63,7 +61,7 @@ def install() -> None:
         author=pkg['author'],
         author_email=pkg['email'],
         license=pkg['license'],
-        packages=['flib'],
+        packages=['hup'],
         python_requires='>=3.7',
         install_requires=[
             'appdirs>=1.4.1',

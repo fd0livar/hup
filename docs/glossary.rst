@@ -12,4 +12,4 @@ API Glossary
         including: :term:`File objects <file object>`, Strings and
         :term:`path-like objects <path-like object>`, that point to filenames in
         the directory structure of the system and instances of the generic class
-        :class:`~flib.io.abc.Connector`.
+        :class:`~hup.io.abc.Connector`.

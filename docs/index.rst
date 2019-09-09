@@ -1,5 +1,5 @@
-Frootlab Shared Library
-=======================
+Hup
+===
 
 .. toctree::
    :maxdepth: 2

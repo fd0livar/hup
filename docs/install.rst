@@ -1,9 +1,9 @@
 Installation
 ============
 
-The *Frootlab Shared Library* (flib) requires Python 3.7 or later. If you do not
-already have a Python environment configured on your computer, please see the
-instructions for installing the full `scientific Python stack`_.
+**Hup** requires Python 3.7 or later. If you do not already have a Python
+environment configured on your computer, please see the instructions for
+installing the full `scientific Python stack`_.
 
 .. note::
    If you are using the Windows platform and want to install optional packages
@@ -13,29 +13,29 @@ instructions for installing the full `scientific Python stack`_.
    to their online documentation.
 
 Below it is assumed, that you have the default Python environment configured on
-your computer and you intend to install the frootlab shared library inside of
-it.  If you want to create and work with Python virtual environments, please
-follow instructions on `venv`_ and `virtual environments`_.
+your computer and you intend to install Hup inside of it.  If you want to create
+and work with Python virtual environments, please follow instructions on `venv`_
+and `virtual environments`_.
 
 Install the latest distributed package
 --------------------------------------
 
-You can install the latest distributed package of flib by using ``pip``::
+You can install the latest distributed package of Hup by using ``pip``::
 
-    $ pip install flib
+    $ pip install hup
 
 Install the development branch
 ------------------------------
 
 The installation requires that you have `Git`_ installed
 on your system. Under this prerequisite the first step is to clone the github
-repository of flib::
+repository of Hup::
 
-    $ git clone https://github.com/frootlab/flib.git
+    $ git clone https://github.com/frootlab/hup.git
 
 Thereupon the development branch can locally be installed by using `pip`::
 
-    $ cd flib
+    $ cd hup
     $ pip install -e .
 
 The ``pip install`` command allows you to follow the development branch as
@@ -53,10 +53,10 @@ update it anytime by running a ``git pull`` in this directory::
 Testing the development branch
 ------------------------------
 
-The Frootlab Shared Library uses the Python builtin module :module:`unittest`
-for testing. Since the tests are not included in the distributed package at you
-are required to install the development branch, as described above. Thereupon
-you have to switch to the repository directory and run::
+Hup uses the Python builtin module :module:`unittest` for testing. Since the
+tests are not included in the distributed package at you are required to install
+the development branch, as described above. Thereupon you have to switch to the
+repository directory and run::
 
     $ python3 tests
 

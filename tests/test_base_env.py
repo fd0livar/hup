@@ -2,22 +2,20 @@
 #
 # Copyright (C) 2019 Frootlab
 #
-# This file is part of the Frootlab Shared Library (flib)
-# https://www.frootlab.org/flib
+# This file is part of Frootlab Hup, https://www.frootlab.org/hup
 #
-#  The Frootlab Shared Library is free software: you can redistribute it and/or
-#  modify it under the terms of the GNU General Public License as published by
-#  the Free Software Foundation, either version 3 of the License, or (at your
-#  option) any later version.
+#  Hup is free software: you can redistribute it and/or modify it under the
+#  terms of the GNU General Public License as published by the Free Software
+#  Foundation, either version 3 of the License, or (at your option) any later
+#  version.
 #
-#  The Frootlab Shared Library is distributed in the hope that it will be
-#  useful, but WITHOUT ANY WARRANTY; without even the implied warranty of
-#  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General
-#  Public License for more details. You should have received a copy of the GNU
-#  General Public License along with the frootlab shared library. If not, see
-#  <http://www.gnu.org/licenses/>.
+#  Hup is distributed in the hope that it will be useful, but WITHOUT ANY
+#  WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR
+#  A PARTICULAR PURPOSE. See the GNU General Public License for more details.
+#  You should have received a copy of the GNU General Public License along with
+#  Hup. If not, see <http://www.gnu.org/licenses/>.
 #
-"""Unittests for module 'flib.base.env'."""
+"""Unittests for module 'hup.base.env'."""
 
 __copyright__ = '2019 Frootlab'
 __license__ = 'GPLv3'
@@ -27,9 +25,9 @@ __email__ = 'contact@frootlab.org'
 __authors__ = ['Patrick Michl <patrick.michl@frootlab.org>']
 
 import pathlib
-from flib.base import env, test
-from flib.typing import PathLikeList
-from flib.base.test import Case
+from hup.base import env, test
+from hup.typing import PathLikeList
+from hup.base.test import Case
 
 #
 # Test Cases
@@ -58,7 +56,7 @@ class TestEnv(test.ModuleTest):
         if dirname in self.app_dirs: # Check application dir
             if env.get_osname() == 'Linux':
                 return appname in str(path)
-            return appname in str(path) and appauthor in str(path)
+            return appname in str(path)
         if dirname in self.dist_dirs: # Check distribution dir
             return appname in str(path)
         if dirname in self.pkg_dirs: # Check package dir
@@ -89,8 +87,8 @@ class TestEnv(test.ModuleTest):
             prev_dirs = getattr(env, 'cache').copy()
         try:
             env.update_dirs(
-                appname=app_name, appauthor=app_author, pkgname='flib.base')
-            new_dirs = env.get_dirs(pkgname='flib.base')
+                appname=app_name, appauthor=app_author, pkgname='hup.base')
+            new_dirs = env.get_dirs(pkgname='hup.base')
             self.assertTrue(self.is_dirs_valid(new_dirs, app_name, app_author))
         finally:
             if dirs_exist:
@@ -152,7 +150,7 @@ class TestEnv(test.ModuleTest):
         self.assertCaseTrue(env.get_var, cases)
 
     def test_get_vars(self) -> None:
-        envvars = env.get_vars(pkgname='flib')
+        envvars = env.get_vars(pkgname='hup')
         self.assertTrue(set(self.app_vars) <= envvars.keys())
 
     def test_get_encoding(self) -> None:
