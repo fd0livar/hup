@@ -1,2 +1,2 @@
-appdirs>=1.4.1
+appdirs>=1.4.3
 pyparsing>=2.2
