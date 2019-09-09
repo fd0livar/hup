@@ -213,4 +213,4 @@ todo_include_todos = True
 intersphinx_mapping = {
     'python': ('https://docs.python.org/3', None),
     'numpy': ('http://docs.scipy.org/doc/numpy/', None),
-    'pandb': ('http://pandb.readthedocs.io/en/latest/', None)}
+    'deet': ('http://deet.readthedocs.io/en/latest/', None)}

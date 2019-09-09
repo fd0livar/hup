@@ -8,11 +8,11 @@ application in other open source projects as well.
 
 Hup was originally created in 2019 to allow a separation of the collaborative
 data science platform *Nemoa* into smaller and individually maintainable
-subprojects `Pandora`_, `Motley`_ and `Nemoa`_. For more information about these
+subprojects `Deet`_, `Motley`_ and `Nemoa`_. For more information about these
 projects see their respective project pages.
 
 .. _Python: https://www.python.org
 .. _Frootlab: https://www.frootlab.org
 .. _Nemoa: https://www.frootlab.org/nemoa
-.. _Pandora: https://www.frootlab.org/pandora
+.. _Deet: https://www.frootlab.org/deet
 .. _Motley: https://www.frootlab.org/motley

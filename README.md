@@ -9,7 +9,7 @@ Hup
 primarily aims to support [Frootlab](https://www.frootlab.org) projects by
 serving as a common base library. It was originally created in 2019 for the
 [Liquid Code](https://www.frootlab.org/liquid) project to separate
-[Pandora](https://www.frootlab.org/pandora) and
+[Deet](https://www.frootlab.org/deet) and
 [Nemoa](https://www.frootlab.org/nemoa). The majority of the provided
 modules, however, are kept generic to facilitate their application beyond
 Frootlab projects as well.
@@ -58,8 +58,8 @@ interested to join the team, we would be glad, to receive an informal
 License
 -------
 
-Hup is [open source](https://github.com/frootlab/pandora) and available free for
-any use under the [GPLv3 license](https://www.gnu.org/licenses/gpl.html):
+Hup is open source and available free for any use under the
+[GPLv3 license](https://www.gnu.org/licenses/gpl.html):
 
     © 2019 Frootlab Developers:
       Patrick Michl <patrick.michl@frootlab.org>
