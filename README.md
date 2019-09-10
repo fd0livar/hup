@@ -8,7 +8,7 @@ Hup
 **Hup** is a multi-purpose [Python](https://www.python.org/) library, which
 primarily aims to support [Frootlab](https://www.frootlab.org) projects by
 serving as a common base library. It was originally created in 2019 for the
-[Liquid Code](https://www.frootlab.org/liquid) project to separate
+[Vivid Code](https://www.frootlab.org/vivid) project to separate
 [Deet](https://www.frootlab.org/deet) and [Rian](https://www.frootlab.org/rian).
 The majority of the provided modules, however, are kept generic to facilitate
 their application beyond Frootlab projects as well.
