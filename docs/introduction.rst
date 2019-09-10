@@ -8,11 +8,11 @@ application in other open source projects as well.
 
 Hup was originally created in 2019 to allow a separation and extension of our
 data analysis framework *Nemoa* within smaller and individually maintainable
-subprojects `Deet`_, `Motley`_ and `Rian`_. For more information about these
+subprojects `Deet`_, `Brea`_ and `Rian`_. For more information about these
 projects see their respective project pages.
 
 .. _Python: https://www.python.org
 .. _Frootlab: https://www.frootlab.org
 .. _Rian: https://www.frootlab.org/rian
 .. _Deet: https://www.frootlab.org/deet
-.. _Motley: https://www.frootlab.org/motley
+.. _Brea: https://www.frootlab.org/brea
